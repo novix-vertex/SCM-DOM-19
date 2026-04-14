@@ -21,13 +21,20 @@ black_keys.forEach((black_key, index) => {
 //Sounds
 
 const notes = {
-    C: "assets/sounds/C4.mp3",
-    D: "assets/sounds/D4.mp3",
-    E: "assets/sounds/E4.mp3",
-    F: "assets/sounds/F4.mp3",
-    G: "assets/sounds/G4.mp3",
-    A: "assets/sounds/A4.mp3",
-    B: "assets/sounds/B4.mp3"
+    "C": "assets/sounds/C4.mp3",
+    "D": "assets/sounds/D4.mp3",
+    "E": "assets/sounds/E4.mp3",
+    "F": "assets/sounds/F4.mp3",
+    "G": "assets/sounds/G4.mp3",
+    "A": "assets/sounds/A4.mp3",
+    "B": "assets/sounds/B4.mp3",
+    "C#": "assets/sounds/C4.mp3",
+    "D#": "assets/sounds/D4.mp3",
+    "E#": "assets/sounds/E4.mp3",
+    "F#": "assets/sounds/F4.mp3",
+    "G#": "assets/sounds/G4.mp3",
+    "A#": "assets/sounds/A4.mp3",
+    "B#": "assets/sounds/B4.mp3"
 };
 
 const octaves = {
@@ -41,14 +48,20 @@ document.addEventListener("click", function (e) {
     if (!key) return;
 
     const note = key.dataset.note;
-    const octave = key.dataset.octave;
+    let octave = key.dataset.octave;
 
     playNote(note, octave);
 });
 
 function playNote(note, octave) {
     const audio = new Audio(notes[note]);
-    audio.playbackRate = octaves[octave];
+    let rate = octaves[octave];
+
+    if (note.includes("#"))
+        rate += 0.08;
+
+    audio.playbackRate = rate;
+
     audio.currentTime = 0;
     audio.play();
 }
