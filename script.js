@@ -5,8 +5,8 @@ black_keys.forEach((black_key, index) => {
 
     black_key.style.width = ((window.innerWidth / 21) * 50 / 100) + "px";
     black_key.style.left = ((window.innerWidth / 21)) * index + ((window.innerWidth / 21) * 50 / 100) + (((window.innerWidth / 21) * 50 / 100) / 2) + "px";
-    
-    if(index==20){
+
+    if (index == 20) {
         black_key.style.left = ((window.innerWidth / 21)) * index + ((window.innerWidth / 21) * 50 / 100) + "px";
     }
     switch (index) {
@@ -40,12 +40,6 @@ const notes = {
     "B#": "assets/sounds/B4.mp3"
 };
 
-const octaves = {
-    3: 0.75, // low
-    4: 1,    // original
-    5: 1.25  // high
-};
-
 document.addEventListener("click", function (e) {
     const key = e.target.closest(".key");
     if (!key) return;
@@ -58,15 +52,29 @@ document.addEventListener("click", function (e) {
 
 function playNote(note, octave) {
     const audio = new Audio(notes[note]);
-    let rate = octaves[octave];
+    let isSharp = false;
 
     if (note.includes("#"))
-        rate += 0.08;
+        isSharp = true;
 
+    let rate = playbackRate(Number(octave), isSharp);
+    //    console.log("rate: " + rate);
     audio.playbackRate = rate;
 
     audio.currentTime = 0;
     audio.play();
+}
+
+function playbackRate(octave, isSharp) {
+    console.log("octave: " + octave);
+    console.log("isSharp: " + isSharp);
+    tone = (isSharp) ? 1 : 0;
+    //    console.log("tonea: " + tone);
+
+    tone += (octave - 4) * 12;
+
+    //    console.log("toneb: " + tone);
+    return Math.pow(2, tone / 12);
 }
 
 // https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/C4.mp3
