@@ -4,7 +4,70 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
+  background: #eee;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+}
+main .piano {
+  width: 100%;
+  height: 300px;
+  background: #6e0e0e;
+  position: relative;
+}
+main .piano .white-keys {
+  display: flex;
+  gap: 2px;
+  height: 95%;
+  width: 100%;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+main .piano .white-keys .white-key {
+  background: #fff;
+  color: #000;
+  flex: 1;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 16px;
+  font-size: 1.2rem;
+}
+main .piano .white-keys .white-key:active {
+  transform: scale(0.98);
+}
+main .piano .black-keys {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60%;
+  z-index: 10;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  display: flex;
+  justify-content: flex-start;
+}
+main .piano .black-keys .black-key {
+  position: absolute;
+  color: #fff;
+  height: 100%;
+  background: #000;
+  border-radius: 0 0 4px 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 16px;
+  font-size: 0.9rem;
+}
+main .piano .black-keys .black-key:active {
+  transform: scale(0.98);
 }/*# sourceMappingURL=style.css.map */
